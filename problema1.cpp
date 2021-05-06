@@ -175,7 +175,7 @@ void calcular_tiempo_2(int n, int cantidad_de_elementos_del_vector){
     std::uniform_real_distribution<> distr(FLOAT_MIN, FLOAT_MAX);
 
     for (int i = 0; i < cantidad_de_elementos_del_vector; ++i) {
-        float numero_aleatorio  = distr(eng);
+         atomic<float> numero_aleatorio  = distr(eng);
         cn.push_back(numero_aleatorio);
     }
 
