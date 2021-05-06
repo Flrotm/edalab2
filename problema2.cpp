@@ -1,13 +1,12 @@
 #include <iostream>
 #include <vector>
 #include <thread>
-#include <atomic>
-#include <ctime>
-#include <random>
-#include <iomanip>
+#include <mutex>
 using namespace std;
 
 //Se definen las variables globales y el arreglo de hilos
+
+mutex mtx;
 
 int top = 0;
 const int max_size = 10000;
@@ -35,10 +34,11 @@ char Top(){
 }
 //Push en la pila
 void Push(char elemento){
-
+    mtx.lock();
     if(top+1 < max_size){
         data[++top] = elemento;
     }
+    mtx.unlock();
 }
 //Pop de la pila
 void Pop(){
